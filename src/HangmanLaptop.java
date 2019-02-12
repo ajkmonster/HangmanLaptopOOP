@@ -1,56 +1,58 @@
 import java.util.*;
 
 public class HangmanLaptop {
+    private static String[] list = new String[]{"","","","","","","","","","",""};
     private static String[] list2 = new String[]{"","","","","","","","","","",""};
+    private static String[] splitStr1 = new String[]{};
     private static int wrongNum=0;
     private static String results;
     private static String userGuess;
+    private static ArrayList<String> words = new ArrayList<>();
     public static void main(String[] args) {
         InitializeWords initialize  = new InitializeWords();
-initialize.setWords();
+        initialize.setWords(words);
+        initialize.getWords();
         WelcomeMessage welcome = new WelcomeMessage();
         System.out.println(welcome.getWelcomeMessage());
         RandomGenerator index = new RandomGenerator();
-        index.setIndex();
-        index.getIndex();
+        index.setIndex(initialize.getWords());
         LettersofWord letters = new LettersofWord();
-        letters.setSplitStr();
-        letters.getSplitStr();
+        letters.setSplitStr(initialize.getWords(),index.getIndex());
         IntCharNumber list = new IntCharNumber();
-        list.setList();
-        list.getList();
+        list.setList(letters.getSplitStr());
         System.out.print("The word I'm thinking of: ");
         for (String s: list.getList()) {
             System.out.print(s);
         }
         System.out.println("\n");
-        game(initialize.getWords(),letters.getSplitStr(),list.getList(),index.getIndex());
+        do {
+            System.out.println("Please enter your guess: ");
+            Scanner key = new Scanner(System.in);
+            userGuess = key.nextLine().toLowerCase();
+            if (wrongNum>=6) {
+                break;
+            }
+            if (!userGuess.equalsIgnoreCase(initialize.getWords().get(index.getIndex()))) {
+                for (int i = 0; i < letters.getSplitStr().length; i++) {
+                    if (letters.getSplitStr()[i].equalsIgnoreCase(userGuess)) {
+                        list.getList()[i] = userGuess;
+                        stringJoiner(list.getList());
+                    }
+                }
+                wrongChecker(list.getList());
+                yourGuess(list.getList());
+            } else if (userGuess.equalsIgnoreCase(initialize.getWords().get(index.getIndex()))){
+                break;
+            }
+        }while(!initialize.getWords().get(index.getIndex()).equalsIgnoreCase(results));
         wonGame(initialize.getWords(),index.getIndex());
     }
 
 
+
     private static void game(ArrayList<String> words,String[] splitStr, String[] list,int index) {
 
-           do {
-               System.out.println("Please enter your guess: ");
-               Scanner key = new Scanner(System.in);
-               userGuess = key.nextLine().toLowerCase();
-               if (wrongNum>=6) {
-                   break;
-               }
-               if (!userGuess.equalsIgnoreCase(words.get(index))) {
-                   for (int i = 0; i < splitStr.length; i++) {
-                       if (splitStr[i].equalsIgnoreCase(userGuess)) {
-                           list[i] = userGuess;
-                           stringJoiner(list);
-                       }
-                   }
-                   wrongChecker(list);
-                   yourGuess(list);
-               } else if (userGuess.equalsIgnoreCase(words.get(index))){
-                   break;
-               }
-           }while(!words.get(index).equalsIgnoreCase(results));
+
     }
 
     private static void yourGuess(String[] list) {

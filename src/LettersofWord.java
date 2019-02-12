@@ -1,4 +1,6 @@
-public class LettersofWord extends RandomGenerator {
+import java.util.ArrayList;
+
+public class LettersofWord {
 
 private String[] splitStr;
 public LettersofWord(){
@@ -8,9 +10,7 @@ public LettersofWord(){
         return splitStr;
     }
 
-    public void setSplitStr() {
-        setIndex();
-        splitStr = getWords().get(getIndex()).split("");
-        this.splitStr = splitStr;
+    public void setSplitStr(ArrayList<String> words,int index) {
+    splitStr = words.get(index).split("");
     }
 }

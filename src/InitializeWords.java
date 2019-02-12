@@ -13,8 +13,9 @@ public class InitializeWords {
         return words;
     }
 
- public void setWords() {
+ public void setWords(ArrayList<String> words) {
      Collections.addAll(words, "tree", "rain", "bear", "encourage", "promise", "soup", "chess",
              "insurance", "pancakes", "stream");
+     this.words=words;
  }
 }

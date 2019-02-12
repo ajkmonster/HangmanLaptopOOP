@@ -1,4 +1,6 @@
-public class IntCharNumber extends LettersofWord {
+import java.util.ArrayList;
+
+public class IntCharNumber {
     private String[] list;
     public IntCharNumber (){
        list = new String[]{"","","","","","","","","","",""};
@@ -6,11 +8,9 @@ public class IntCharNumber extends LettersofWord {
     public String[] getList() {
         return list;
     }
-    public void setList() {
-        setSplitStr();
-        for (int i = 0; i < getSplitStr().length; i++) {
+    public void setList(String[] splitStr) {
+        for (int i = 0; i < splitStr.length; i++) {
             list[i] = "-";
         }
-
     }
 }
