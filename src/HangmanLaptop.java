@@ -1,9 +1,7 @@
 import java.util.*;
 
 public class HangmanLaptop {
-    private static String[] list = new String[]{"","","","","","","","","","",""};
     private static String[] list2 = new String[]{"","","","","","","","","","",""};
-    private static String[] splitStr1 = new String[]{};
     private static int wrongNum=0;
     private static String results;
     private static String userGuess;
@@ -47,14 +45,6 @@ public class HangmanLaptop {
         }while(!initialize.getWords().get(index.getIndex()).equalsIgnoreCase(results));
         wonGame(initialize.getWords(),index.getIndex());
     }
-
-
-
-    private static void game(ArrayList<String> words,String[] splitStr, String[] list,int index) {
-
-
-    }
-
     private static void yourGuess(String[] list) {
         System.out.print("Your guess so far: ");
         for (String s : list) {
